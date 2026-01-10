@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portfólio de Douglas Citon - Business Intelligence, Análise de Dados e Tecnologia">
   <meta name="keywords" content="Douglas Citon, portfólio, BI, análise de dados, tecnologia, programação, Python">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
 
   <title>Portfólio - Douglas Citon</title>
 
@@ -79,47 +81,51 @@
         <div class="skill">
           <span>Python</span>
           <div class="skill-bar">
-            <div data-skill="10%"></div>
+            <div style="--skill-width: 40%;"></div>
           </div>
         </div>
         <div class="skill">
           <span>Excel / Power BI</span>
           <div class="skill-bar">
-            <div data-skill="50%"></div>
+            <div style="--skill-width: 80%;"></div>
           </div>
         </div>
         <div class="skill">
           <span>SQL / Power Query</span>
           <div class="skill-bar">
-            <div data-skill="20%"></div>
+            <div style="--skill-width: 85%;"></div>
           </div>
         </div>
         <div class="skill">
           <span>Java / C / HTML / CSS / JS</span>
           <div class="skill-bar">
-            <div data-skill="30%"></div>
+            <div style="--skill-width: 60%;"></div>
           </div>
         </div>
       </div>
     </section>
 
+    <section class="projeto-destaque">
+      <h2>Dashboard Power BI — Produção Industrial</h2>
 
-    <!-- Projetos Futuros -->
-    <section class="projetos" id="projetos">
-      <h2><i class="fas fa-project-diagram"></i> Projetos</h2>
-      <div class="projetos-grid">
-        <div class="projeto-card">
-          <p>Projeto em breve</p>
-        </div>
-        <div class="projeto-card">
-          <p>Projeto em breve</p>
-        </div>
-        <div class="projeto-card">
-          <p>Projeto em breve</p>
-        </div>
-        <div class="projeto-card">
-          <p>Projeto em breve</p>
-        </div>
+      <p class="projeto-descricao">
+        Dashboard interativo desenvolvido durante o curso de Power BI com Bruce Fonseca, aplicado à análise de produção industrial.
+         O projeto contempla indicadores operacionais, modelagem dimensional, medidas DAX, tratamento de dados com Power Query e uso de tooltips interativos para detalhamento contextual dos indicadores,
+          proporcionando melhor exploração e interpretação dos dados. Dados fictícios, em conformidade com a LGPD.
+      </p>
+
+      <ul class="projeto-tecnologias">
+        <li>Power BI</li>
+        <li>DAX</li>
+        <li>Power Query</li>
+        <li>Modelagem Dimensional</li>
+      </ul>
+
+      <div class="powerbi-embed">
+        <iframe title="Dashboard curso Bruce Fonseca V-01"
+          src="https://app.powerbi.com/view?r=eyJrIjoiOTA1YjNiOWUtZjA1Mi00ZDc2LWEyMjUtMDY4YjRmMjFlMjE1IiwidCI6IjY1OWNlMmI4LTA3MTQtNDE5OC04YzM4LWRjOWI2MGFhYmI1NyJ9"
+          allowfullscreen="true">
+        </iframe>
       </div>
     </section>
 
@@ -176,11 +182,11 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Douglas Citon. Todos os direitos reservados.</p>
+    <p>© 2025 Douglas Citon. Business Intelligence & Análise de Dados.</p>
   </footer>
 
   <!-- JS -->
-  <script src="js/mobile_navbar.js"></script>
+  <script src="js/mobile_navbar.js" defer></script>
 </body>
 
 </html>

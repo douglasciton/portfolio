@@ -5,7 +5,8 @@
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   font-family: 'Fira Code', monospace;
   scroll-behavior: smooth;
   background-color: #f9f9f9;
@@ -18,7 +19,7 @@ header {
   top: 0;
   width: 100%;
   background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
 }
 
@@ -79,6 +80,7 @@ section {
   padding: 100px 20px 60px;
   max-width: 1200px;
   margin: auto;
+  scroll-margin-top: 80px;
 }
 
 section h2 {
@@ -94,7 +96,8 @@ section h2 {
   color: #1a1a1a;
 }
 
-.sobre-content p, .sobre-lista li {
+.sobre-content p,
+.sobre-lista li {
   font-size: 1rem;
   line-height: 1.8;
   margin-bottom: 20px;
@@ -137,16 +140,68 @@ section h2 {
   width: 0;
   border-radius: 6px;
   transition: width 1s ease;
+  animation: fillSkill 1.2s ease forwards;
 }
 
+/* Projeto Destaque */
+.projeto-destaque {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 40px;
+}
+
+.projeto-descricao {
+  max-width: 900px;
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+
+.projeto-tecnologias {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.projeto-tecnologias li {
+  background: #eef4ff;
+  color: #2c7be5;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.powerbi-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+.powerbi-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
 /* Projetos e Certificados */
-.projetos-grid, .certificados-grid {
+
+.certificados-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
-.projeto-card, .certificado-card {
+.certificado-card {
   background: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -155,9 +210,9 @@ section h2 {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.projeto-card:hover, .certificado-card:hover {
+.certificado-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .certificado-card img {
@@ -171,6 +226,8 @@ section h2 {
   color: #1a1a1a;
   margin-bottom: 10px;
 }
+
+
 
 /* Contato */
 .contatos-grid {
@@ -213,7 +270,7 @@ footer {
 }
 
 /* Responsividade */
-@media(max-width: 768px){
+@media(max-width: 768px) {
   .nav-list {
     display: none;
     position: absolute;
@@ -235,20 +292,18 @@ footer {
     display: flex;
   }
 
-  .certificados-grid, .projetos-grid {
+  .certificados-grid{
     grid-template-columns: 1fr;
   }
 }
 
 /* Hard Skills animation */
 @keyframes fillSkill {
-  from { width: 0; }
-  to { width: var(--skill-width); }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--skill-width);
+  }
 }
-
-
-
-
-
-
-
