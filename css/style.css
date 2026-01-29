@@ -196,6 +196,17 @@ section h2 {
   border: none;
 }
 
+.ver-mais {
+  color: #0070f3;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.ver-mais:hover {
+  text-decoration: underline;
+}
+
 
 /* Projetos e Certificados */
 
