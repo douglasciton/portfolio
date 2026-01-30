@@ -38,7 +38,7 @@ body {
 
 /* Conteúdo do artigo */
 .projeto-conteudo {
-  max-width: 900px;
+  max-width: 1366px;
   margin: 0 auto;
 }
 
@@ -59,7 +59,7 @@ body {
 .projeto-tabela h2 {
   color: #2c7be5;
   margin-bottom: 15px;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 /* Parágrafos */
@@ -80,17 +80,28 @@ body {
   margin-bottom: 5px;
 }
 
-/* Imagens */
-.imagem-tabela {
+/* Bloco padrão para imagens do projeto */
+.imagem-projeto {
+  margin: 2rem 0;
   text-align: center;
-  margin-bottom: 15px;
 }
 
-.imagem-tabela img {
+.imagem-projeto img {
   max-width: 100%;
-  border-radius: 8px;
+  height: auto;
+  border-radius: 10px;
   border: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
 }
+
+/* Legenda técnica da imagem */
+.imagem-projeto figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: #5f6c7b;
+  font-family: 'Fira Code', monospace;
+}
+
 
 /* Embed Power BI */
 .projeto-embed iframe {
