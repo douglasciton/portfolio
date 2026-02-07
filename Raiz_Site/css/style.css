@@ -1,0 +1,261 @@
+/* =====================================================
+   ESTRUTURA E HEADER ESPECÍFICO (HOME)
+===================================================== */
+main {
+  padding-top: 80px;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* O cabeçalho da Home é uma linha simples */
+nav {
+  max-width: var(--container-width);
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* =====================================================
+   SEÇÕES E CONTEÚDO
+===================================================== */
+section {
+  max-width: var(--container-width);
+  margin: auto;
+  padding: 40px 20px 40px;
+  scroll-margin-top: 80px;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 50px;
+  color: var(--color-primary);
+}
+
+/* SOBRE */
+.sobre-content h2 {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sobre-content h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.sobre-content p,
+.sobre-lista li {
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.sobre-lista {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.sobre-lista li::before {
+  content: "- ";
+  color: var(--color-primary);
+}
+
+/* HARD SKILLS */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.skill-bar {
+  height: 15px;
+  background: var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.skill-bar div {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-sm);
+  animation: fillSkill 1.2s ease forwards;
+}
+
+/* PROJETO EM DESTAQUE */
+.projeto-destaque {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+
+/* Estilo do link "Ver projeto completo" */
+.ver-mais {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.3s;
+}
+
+.ver-mais:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* Estilo das Tags de Tecnologias (Power BI, DAX, etc) */
+.projeto-tecnologias {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  padding: 0;
+  /* Garante que não haja recuo lateral */
+}
+
+.projeto-tecnologias li {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.powerbi-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.powerbi-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Seção de Certificados - Minimalista */
+.carousel-container {
+  position: relative;
+  max-width: 800px; /* Mantém um tamanho elegante */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  list-style: none;
+  padding: 0;
+}
+
+.certificado-card {
+  min-width: 100%;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.certificado-card img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+/* Botões simples sobrepostos para não precisar de margens negativas */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(44, 123, 229, 0.7); /* Azul primário com transparência */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-button.prev { left: 10px; }
+.carousel-button.next { right: 10px; }
+
+/* CONTATO */
+/* Container que envolve todos os contatos */
+.contatos-grid {
+    display: flex;
+    justify-content: center; /* Centraliza os blocos */
+    align-items: center;
+    flex-wrap: wrap;       /* ESSENCIAL: Faz os itens pularem linha se não couberem */
+    gap: 30px;             /* Espaço entre um contato e outro */
+    margin-top: 40px;
+    padding: 20px;
+}
+
+/* Cada item individual (ícone + link) */
+.contato-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;             /* Espaço entre o ícone e o texto */
+    transition: transform 0.3s ease;
+}
+
+.contato-item:hover {
+    transform: translateY(-3px); /* Leve efeito ao passar o mouse */
+}
+
+/* Estilo do ícone */
+.contato-item i, .contato-item svg {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    flex-shrink: 0;        /* Impede o ícone de amassar */
+}
+
+/* Estilo do link (removendo o azul feio das imagens) */
+.contato-item a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;   /* Impede que o e-mail ou telefone quebre no meio */
+}
+
+.contato-item a:hover {
+    color: var(--color-primary);
+}
+
+@keyframes fillSkill {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--skill-width);
+  }
+}

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Douglas Citon - Business Intelligence, Análise de Dados e Tecnologia">
+  <meta name="keywords" content="Douglas Citon, portfólio, BI, análise de dados, tecnologia, programação, Python">
+  <title>Dashboard Power BI — Produção Industrial</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/projeto.css">
+</head>
+
+<body>
+
+  <header class="header-projeto">
+
+    <nav class="header-topo">
+      <h1 class="titulo-projeto">Produção Industrial</h1>
+
+      <button class="mobile-menu" aria-label="Abrir menu" aria-expanded="false">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </button>
+
+      <ul class="nav-list">
+        <li><a href="#contexto">Contexto</a></li>
+        <li><a href="#tabelas">Tabelas</a></li>
+        <li><a href="#tratamento">Tratamento</a></li>
+        <li><a href="#medidas">Medidas</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#detalhes">Detalhes</a></li>
+        <li><a href="#tooltips">Tooltips</a></li>
+        <li><a href="#melhorias">Melhorias</a></li>
+      </ul>
+    </nav>
+
+    <!-- Linha inferior -->
+    <div class="header-voltar">
+      <a href="../index.html" class="link-voltar">
+        ← Voltar ao Portfólio
+      </a>
+    </div>
+
+  </header>
+
+
+
+  <!-- CONTEÚDO -->
+  <main class="projeto-conteudo" id="contexto">
+
+    <!-- Problema e Solução -->
+    <section class="projeto">
+      <h2>Contexto do projeto</h2>
+
+      <h3>Problema</h3>
+      <p>
+        O gerente de produção não dispunha de informações estruturadas e de fácil interpretação sobre o desempenho de
+        uma célula robotizada, o que dificultava o acompanhamento da operação, a identificação de gargalos e a tomada
+        de decisão baseada em dados.
+      </p>
+
+      <h3>Solução</h3>
+      <p>
+        Diante da ausência de uma base de dados estruturada ou planilhas prévias, a coleta das informações foi realizada
+        diretamente na IHM da célula robotizada. Em seguida, os dados foram organizados no Excel, em uma pasta dedicada
+        composta por seis planilhas, que serviram como base para a modelagem no Power BI.
+      </p>
+    </section>
+
+    <!-- Modelagem -->
+    <section class="projeto-header" id="tabelas">
+      <h2>Modelagem das tabelas</h2>
+    </section>
+
+    <!-- Tabela Operador -->
+    <section class="projeto-tabela">
+      <h3>1. Tabela Operador</h3>
+      <p>
+        A tabela <strong>Operador</strong> foi criada para armazenar as informações dos operadores envolvidos no
+        processo
+        produtivo, permitindo a correta identificação dos responsáveis por cada registro de produção e por cada turno.
+      </p>
+      <p>
+        Essa dimensão é fundamental para análises segmentadas por operador, possibilitando avaliar desempenho
+        individual,
+        comparar resultados entre turnos e garantir rastreabilidade das ações realizadas na célula robotizada.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../Projetos/img_Progetos/img_operador.png" alt="Tabela Operador" loading="lazy" decoding="async">
+        <figcaption>Tabela Operador</figcaption>
+      </figure>
+
+      <h4>Estrutura da tabela Operador</h4>
+      <ul>
+        <li><strong>ID_Turno:</strong> identificador do turno de trabalho ao qual o operador está vinculado.</li>
+        <li><strong>ID_Operador:</strong> identificador único do operador, utilizado como chave de relacionamento.</li>
+        <li><strong>Operador:</strong> nome do operador responsável pela operação da célula.</li>
+      </ul>
+
+      <p>
+        A tabela Operador conecta os eventos operacionais aos respectivos responsáveis, permitindo análises de
+        produtividade, comparação entre operadores e identificação de variações associadas à atuação em diferentes
+        turnos.
+      </p>
+    </section>
+
+    <!-- Tabela Turno -->
+    <section class="projeto-tabela">
+      <h3>2. Tabela Turno</h3>
+      <p>
+        A tabela <strong>Turno</strong> representa os períodos de trabalho definidos no processo produtivo, permitindo
+        segmentar as análises por turno operacional.
+      </p>
+      <p>
+        Ela atua como uma dimensão de referência, relacionando os registros de produção e de horas com os respectivos
+        turnos, o que viabiliza comparações de produtividade, disponibilidade e comportamento operacional entre
+        diferentes períodos.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_turno.png" alt="Tabela Turno" loading="lazy" decoding="async">
+        <figcaption>Tabela Turno</figcaption>
+      </figure>
+
+      <h4>Estrutura da tabela Turno</h4>
+      <ul>
+        <li><strong>ID_Turno:</strong> identificador único do turno, utilizado como chave de relacionamento.</li>
+        <li><strong>Turno:</strong> descrição do período de trabalho (por exemplo, turno do dia, turno da noite).</li>
+      </ul>
+
+      <p>
+        A tabela Turno permite análises comparativas entre períodos, facilitando a identificação de diferenças de
+        desempenho e padrões operacionais ao longo do dia.
+      </p>
+    </section>
+
+    <!-- Tabela Receitas -->
+    <section class="projeto-tabela">
+      <h3>3. Tabela Receitas</h3>
+      <p>
+        A tabela <strong>Receitas</strong> foi criada para armazenar informações sobre as caçambas utilizadas no
+        processo produtivo, incluindo o tempo padrão associado a cada uma.
+      </p>
+      <p>
+        Essa dimensão funciona como referência para análises de eficiência, permitindo comparar o tempo planejado com o
+        tempo efetivamente realizado e identificar desvios no processo.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_receitas.png" alt="Tabela Receitas" loading="lazy" decoding="async">
+        <figcaption>Tabela Receitas</figcaption>
+      </figure>
+
+      <h4>Estrutura da tabela Receitas</h4>
+      <ul>
+        <li><strong>ID_Caçamba:</strong> identificador único da caçamba, utilizado como chave de relacionamento.</li>
+        <li><strong>Caçamba:</strong> identificação da caçamba utilizada no processo.</li>
+        <li><strong>Tempo:</strong> tempo padrão associado à caçamba, utilizado como referência para análise de ciclo.
+        </li>
+      </ul>
+
+      <p>
+        A tabela Receitas é a base para análises de tempo de ciclo, comparação entre tempo planejado e realizado e
+        identificação de possíveis ineficiências na utilização das caçambas.
+      </p>
+    </section>
+
+    <!-- Tabela Motivo de Parada -->
+    <section class="projeto-tabela">
+      <h3>4. Tabela Motivo de Parada</h3>
+      <p>
+        A tabela <strong>Motivo de Parada</strong> foi criada para classificar e descrever as causas das interrupções do
+        processo produtivo, garantindo padronização na identificação dos eventos de parada.
+      </p>
+      <p>
+        Essa dimensão é essencial para a análise das perdas de tempo, permitindo agrupar e quantificar as principais
+        causas de indisponibilidade da célula.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_motivo_parada.png" alt="Tabela Motivo de Parada" loading="lazy"
+          decoding="async">
+        <figcaption>Tabela Motivo de Parada</figcaption>
+      </figure>
+
+      <h4>Estrutura da tabela Motivo de Parada</h4>
+      <ul>
+        <li><strong>ID_Motivo_Parada:</strong> identificador único do motivo de parada.</li>
+        <li><strong>Motivo:</strong> descrição do motivo associado à parada.</li>
+      </ul>
+
+      <p>
+        A tabela Motivo de Parada permite classificar tempos produtivos e improdutivos, priorizar ações corretivas e
+        apoiar a avaliação da disponibilidade do processo.
+      </p>
+    </section>
+
+    <!-- Tabela Horas Parada_Trabalhando -->
+    <section class="projeto-tabela">
+      <h3>5. Tabela Horas Parada_Trabalhando</h3>
+      <p>
+        A tabela <strong>Horas Parada_Trabalhando</strong> registra os eventos relacionados ao tempo de trabalho e de
+        parada da célula robotizada, permitindo analisar de forma detalhada os períodos produtivos e improdutivos.
+      </p>
+      <p>
+        Ela serve como base para o cálculo da duração dos eventos, possibilitando mensurar com precisão o tempo
+        associado a cada ocorrência e classificá-lo conforme o motivo de parada.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_horas_parada_trabalhando.png" alt="Tabela Horas Parada_Trabalhando"
+          loading="lazy" decoding="async">
+        <figcaption>Tabela Horas Parada_Trabalhando</figcaption>
+      </figure>
+
+      <h4>Estrutura da tabela Horas Parada_Trabalhando</h4>
+      <ul>
+        <li><strong>Data:</strong> data de ocorrência do evento.</li>
+        <li><strong>ID_Turno:</strong> identificador do turno em que o evento ocorreu.</li>
+        <li><strong>Horas:</strong> registro temporal utilizado para cálculo dos intervalos.</li>
+        <li><strong>ID_Motivo_Parada:</strong> identificador do estado operacional (operação ou parada).</li>
+        <li><strong>ID_Turno2:</strong> identificador do operador responsável no momento do evento.</li>
+      </ul>
+
+      <h4>Coluna Próxima Hora</h4>
+      <p>
+        A coluna <strong>Próxima Hora</strong> foi criada para identificar o registro temporal subsequente a cada
+        evento,
+        definindo a sequência cronológica dos dados. A partir da hora da linha seguinte, é possível estabelecer o
+        intervalo entre eventos consecutivos.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_proxima_hora.png" alt="Coluna Próxima Hora" loading="lazy"
+          decoding="async">
+        <figcaption>Coluna Próxima Hora</figcaption>
+      </figure>
+
+      <p>
+        Essa coluna é utilizada para calcular a duração dos eventos, servindo de base para análises temporais de
+        desempenho e disponibilidade.
+      </p>
+
+      <h4>Coluna Duração</h4>
+      <p>
+        A coluna <strong>Duração</strong> quantifica o tempo associado a cada evento operacional, a partir da diferença
+        entre a Próxima Hora e a Hora do evento.
+      </p>
+      <p>
+        O campo <strong>ID_Motivo_Parada</strong> define a classificação do intervalo:
+      </p>
+      <ul>
+        <li>Quando <strong>ID_Motivo_Parada = 0</strong>, a duração é considerada como horas trabalhadas.</li>
+        <li>Quando <strong>ID_Motivo_Parada ≠ 0</strong>, a duração é considerada como horas paradas.</li>
+      </ul>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_duração.png" alt="Coluna Duração" loading="lazy" decoding="async">
+        <figcaption>Coluna Duração</figcaption>
+      </figure>
+
+      <p>
+        Essa abordagem garante a correta quantificação dos intervalos de tempo e fornece uma base confiável para
+        indicadores de disponibilidade, identificação de gargalos e cálculo de métricas de desempenho.
+      </p>
+    </section>
+
+    <!-- Tabela Robô -->
+    <section class="projeto-tabela">
+      <h3>6. Tabela Robô</h3>
+      <p>
+        A tabela <strong>Robô</strong> consolida os registros operacionais da célula robotizada, integrando informações
+        de operador, turno, data, caçamba e tempos de execução, permitindo a análise da produção ao nível de cada peça.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_robo.png" alt="Tabela Robô" loading="lazy" decoding="async">
+        <figcaption>Tabela Robô</figcaption>
+      </figure>
+
+      <p>
+        Nessa tabela, são armazenados os tempos calculados de duração, setup e ciclo, além das informações de operador,
+        turno, data e caçamba, viabilizando análises detalhadas do processo produtivo.
+      </p>
+
+      <h4>Estrutura da tabela Robô</h4>
+      <ul>
+        <li><strong>ID_Operador:</strong> identificador do operador associado ao evento produtivo.</li>
+        <li><strong>ID_Turno:</strong> identificador do turno em que a operação ocorreu.</li>
+        <li><strong>Data:</strong> data da operação.</li>
+        <li><strong>ID_Caçamba:</strong> identificador da caçamba utilizada.</li>
+        <li><strong>Duração:</strong> tempo decorrido para a produção de cada peça.</li>
+        <li><strong>Termino_Peça:</strong> horário de término da produção da peça.</li>
+        <li><strong>Peça:</strong> identificador da peça produzida.</li>
+      </ul>
+
+      <h4>Coluna Tempo_Setup</h4>
+      <p>
+        A coluna <strong>Tempo_Setup</strong> foi criada para identificar o tempo de setup entre a conclusão de uma peça
+        e o início efetivo do próximo ciclo produtivo, isolando o tempo improdutivo interno ao processo.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_temposetup.png" alt="Coluna Tempo_Setup" loading="lazy" decoding="async">
+        <figcaption>Coluna Tempo_Setup</figcaption>
+      </figure>
+
+      <p>
+        A lógica consiste em calcular a diferença entre o término da peça atual e o término da peça anterior, ajustando
+        esse intervalo em relação ao tempo de ciclo. Apenas a parte relevante do resultado é considerada, e eventuais
+        erros retornam zero, garantindo consistência nos dados.
+      </p>
+
+      <h4>Coluna Tempo_Ciclo</h4>
+      <p>
+        A coluna <strong>Tempo_Ciclo</strong> converte a duração dos eventos produtivos para o formato de tempo
+        (hh:mm:ss), permitindo uma interpretação padronizada do ciclo de produção de cada peça.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_tempociclo.png" alt="Coluna Tempo_Ciclo" loading="lazy" decoding="async">
+        <figcaption>Coluna Tempo_Ciclo</figcaption>
+      </figure>
+
+      <p>
+        A transformação da coluna Duração para um formato de tempo facilita o uso em análises operacionais e garante
+        alinhamento com os demais campos temporais do modelo.
+      </p>
+    </section>
+
+    <!-- Etapa de tratamento dos dados -->
+    <section class="projeto-header" id="tratamento">
+      <h2>Tratamento e modelagem dos dados</h2>
+    </section>
+
+    <section class="projeto-tabela">
+      <p>
+        Após a preparação inicial no Excel, o arquivo de dados foi carregado no Power BI, onde foram realizados
+        procedimentos de tratamento, padronização e modelagem por meio do Power Query, além da criação dos
+        relacionamentos entre as tabelas.
+      </p>
+
+      <h3>Tratamento da informação de turno</h3>
+      <p>
+        Inicialmente, a informação de turno estava presente tanto na tabela fato quanto na dimensão de operadores. Para
+        evitar redundância e seguir boas práticas de modelagem dimensional, o atributo <strong>Turno</strong> foi
+        centralizado na dimensão <strong>dim_Operador</strong>.
+      </p>
+      <p>
+        A partir da mesclagem entre a tabela fato e a dimensão de operadores, o turno passou a ser obtido indiretamente
+        por meio da chave <strong>ID_Operador</strong>, permitindo a remoção da coluna Turno da tabela fato e
+        preservando apenas a referência ao operador.
+      </p>
+
+      <h4>Benefícios dessa abordagem</h4>
+      <ul>
+        <li>Redução de redundância de dados.</li>
+        <li>Melhoria da integridade referencial.</li>
+        <li>Facilidade de manutenção e evolução do modelo.</li>
+      </ul>
+
+      <p>
+        Após o tratamento, as tabelas foram renomeadas de forma padronizada, separando claramente fatos e dimensões.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_relacionamento.png" alt="Visão geral dos relacionamentos" loading="lazy"
+          decoding="async">
+        <figcaption>Visão geral dos relacionamentos</figcaption>
+      </figure>
+
+      <h3>Dimensão calendário</h3>
+      <p>
+        Como parte das boas práticas de modelagem, foi criada a tabela <strong>dim_calendario</strong> em M Language, a
+        partir dos parâmetros <strong>MinDate</strong> e <strong>MaxDate</strong>, que representam a menor e a maior
+        data presentes na base.
+      </p>
+      <p>
+        Essa abordagem garante que a dimensão de datas seja gerada de forma dinâmica e restrita ao período efetivamente
+        analisado, evitando datas desnecessárias e mantendo o modelo mais leve e alinhado ao intervalo real dos dados.
+      </p>
+
+      <h3>Coluna Início_Peça</h3>
+      <p>
+        A coluna <strong>Início_Peça</strong> foi criada para identificar o instante de início da produção de cada
+        peça, delimitando corretamente o intervalo produtivo associado a cada evento.
+      </p>
+      <p>
+        A lógica utiliza os registros temporais já tratados, subtraindo a duração convertida do horário de término da
+        peça, por meio de uma transformação em M Language.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_iniciopeça.png" alt="Coluna Início_Peça" loading="lazy" decoding="async">
+        <figcaption>Coluna Início_Peça</figcaption>
+      </figure>
+
+      <p>
+        Essa coluna é um elemento-chave para transformar dados brutos em informação temporal estruturada, permitindo
+        análises confiáveis sobre o desempenho produtivo.
+      </p>
+
+      <h3>Relacionamentos entre tabelas</h3>
+      <p>
+        A criação dos relacionamentos é o que transforma tabelas isoladas em um modelo analítico coerente, permitindo
+        que filtros e medidas funcionem de forma integrada.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_relacionamentostabelas.png" alt="Relacionamentos entre tabelas"
+          loading="lazy" decoding="async">
+        <figcaption>Relacionamentos entre tabelas</figcaption>
+      </figure>
+
+      <h4>Tabelas fato</h4>
+      <ul>
+        <li><strong>fat_Producao</strong></li>
+        <li><strong>fat_Horas_Parada_Trabalhando</strong></li>
+      </ul>
+
+      <h4>Tabelas dimensão</h4>
+      <ul>
+        <li><strong>dim_Operador</strong></li>
+        <li><strong>dim_calendario</strong></li>
+        <li><strong>dim_Receitas</strong></li>
+        <li><strong>dim_Motivo_Parada</strong></li>
+      </ul>
+
+      <h4>Principais relacionamentos</h4>
+      <ul>
+        <li>
+          <strong>dim_Operador → fat_Producao / fat_Horas_Parada_Trabalhando</strong><br>
+          Chave: <strong>ID_Operador</strong> — relacionamento 1:N, permitindo análises por operador e turno.
+        </li>
+        <li>
+          <strong>dim_Motivo_Parada → fat_Horas_Parada_Trabalhando</strong><br>
+          Chave: <strong>ID_Motivo_Parada</strong> — relacionamento 1:N, essencial para indicadores de disponibilidade.
+        </li>
+        <li>
+          <strong>dim_Receitas → fat_Producao</strong><br>
+          Chave: <strong>ID_Caçamba</strong> — relacionamento 1:N, relacionando cada peça à sua receita.
+        </li>
+        <li>
+          <strong>dim_calendario → fat_Producao / fat_Horas_Parada_Trabalhando</strong><br>
+          Chave: <strong>Data</strong> — relacionamento 1:N, permitindo análises temporais.
+        </li>
+      </ul>
+
+      <h3>Por que essa modelagem é eficiente</h3>
+      <p>
+        A estrutura adotada evita duplicidade de informações e mantém o modelo enxuto, o que melhora a organização e a
+        performance das consultas. Os relacionamentos garantem que filtros aplicados por operador, data ou motivo sejam
+        propagados corretamente, preservando a consistência analítica e facilitando a manutenção e expansão futura do
+        modelo.
+      </p>
+    </section>
+
+    <!-- Etapa da criação das medidas -->
+    <section class="projeto-header" id="medidas">
+      <h2>Criação das medidas em DAX</h2>
+    </section>
+
+    <section class="projeto-tabela">
+      <p>
+        Com o modelo dimensional estruturado e os relacionamentos estabelecidos, foi iniciada a etapa de criação das
+        medidas em DAX, responsáveis pelos cálculos utilizados no dashboard. Nessa fase, foram desenvolvidos indicadores
+        essenciais para análise do processo produtivo, como tempos de ciclo, tempos de parada, produtividade por
+        operador e métricas de utilização da máquina.
+      </p>
+      <p>
+        As medidas constituem a camada lógica do modelo, transformando dados tratados em informações analíticas
+        consistentes, dinâmicas e alinhadas aos objetivos do projeto.
+      </p>
+
+      <h3>1. Quantidade de Peças (QTD Peças)</h3>
+      <p>
+        A medida <strong>QTD Peças</strong> contabiliza apenas as peças efetivamente produzidas, desconsiderando
+        registros que não representam ciclos válidos. Foi adotado como critério mínimo uma duração igual ou superior a
+        cinco minutos, eliminando ocorrências indevidas, como ciclos encerrados imediatamente após o início.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_medidaQTDpeças.png" alt="Medida QTD Peças" loading="lazy"
+          decoding="async">
+        <figcaption>Medida QTD Peças</figcaption>
+      </figure>
+
+      <p>
+        Com esse filtro, a medida garante que apenas ciclos reais sejam considerados, preservando a integridade dos
+        indicadores de produção e evitando distorções nos resultados.
+      </p>
+
+      <h3>2. Média de Setup (Texto)</h3>
+      <p>
+        A medida <strong>Média Setup (Texto)</strong> calcula o tempo médio de setup considerando apenas registros com
+        duração inferior ou igual a quarenta minutos. Valores acima desse limite são interpretados como paradas
+        operacionais, e não como setups.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_medidaMediaSetup.png" alt="Medida Média Setup" loading="lazy"
+          decoding="async">
+        <figcaption>Medida Média Setup</figcaption>
+      </figure>
+
+      <p>
+        Essa lógica isola setups legítimos, evitando que ocorrências atípicas distorçam a média. O resultado é exibido
+        em formato de texto (hh:mm:ss), facilitando a leitura no dashboard.
+      </p>
+
+      <h3>3. Horas Trabalhadas</h3>
+      <p>
+        A medida <strong>Horas Trabalhadas</strong> calcula o total de horas em que a máquina permaneceu em operação.
+        São considerados apenas os registros cujo <strong>ID_Motivo_Parada</strong> indica condição de trabalho.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_medidaHorastrabalhadas.png" alt="Medida Horas Trabalhadas" loading="lazy"
+          decoding="async">
+        <figcaption>Medida Horas Trabalhadas</figcaption>
+      </figure>
+
+      <p>
+        Como a duração é armazenada em dias, é realizada a conversão para horas por meio da multiplicação por 24,
+        garantindo que o indicador represente corretamente o tempo produtivo.
+      </p>
+
+      <h3>4. Horas Paradas</h3>
+      <p>
+        A medida <strong>Horas Paradas</strong> quantifica o total de horas em que a máquina permaneceu inativa devido a
+        algum motivo de interrupção. São considerados apenas os registros cujo <strong>ID_Motivo_Parada</strong> é
+        diferente de zero.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_medidaHorasparada.png" alt="Medida Horas Paradas" loading="lazy"
+          decoding="async">
+        <figcaption>Medida Horas Paradas</figcaption>
+      </figure>
+
+      <p>
+        Assim como em Horas Trabalhadas, a duração é convertida de dias para horas, permitindo que o indicador reflita
+        o período real de indisponibilidade da máquina.
+      </p>
+
+      <h3>5. Média de Tempo por Caçamba</h3>
+      <p>
+        A medida <strong>Média Tempo por Caçamba</strong> calcula o tempo médio de produção considerando apenas ciclos
+        que atendem ao tempo mínimo definido para cada caçamba na tabela de receitas.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_medidaTermpocacamba.png" alt="Medida Média Tempo por Caçamba"
+          loading="lazy" decoding="async">
+        <figcaption>Medida Média Tempo por Caçamba</figcaption>
+      </figure>
+
+      <p>
+        A medida compara a duração registrada com o tempo padrão da caçamba e considera apenas registros com duração
+        igual ou superior ao tempo definido, eliminando ciclos inválidos ou interrompidos.
+      </p>
+
+      <h3>6. Data de Atualização</h3>
+      <p>
+        A medida <strong>Data de Atualização</strong> identifica a data mais recente presente na dimensão calendário,
+        ignorando filtros aplicados sobre o campo de data.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_medidaDataatualização.png" alt="Medida Data de Atualização"
+          loading="lazy" decoding="async">
+        <figcaption>Medida Data de Atualização</figcaption>
+      </figure>
+
+      <p>
+        Essa medida informa ao usuário até qual data os dados foram carregados, garantindo transparência sobre o período
+        coberto pelo dashboard.
+      </p>
+
+      <h3>7. Percentual de Horas Paradas</h3>
+      <p>
+        A medida <strong>Percentual Horas Paradas</strong> calcula a proporção de tempo em que a máquina permaneceu
+        inativa em relação ao total de horas (paradas + trabalhadas).
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_percentualhorasparada.png" alt="Medida Percentual Horas Paradas"
+          loading="lazy" decoding="async">
+        <figcaption>Medida Percentual Horas Paradas</figcaption>
+      </figure>
+
+      <p>
+        O cálculo utiliza a função <strong>DIVIDE</strong> para evitar erros em cenários com total de horas igual a
+        zero, resultando em um indicador robusto para avaliação da indisponibilidade da máquina.
+      </p>
+
+      <h3>8. Percentual de Horas Trabalhadas</h3>
+      <p>
+        A medida <strong>Percentual Horas Trabalhadas</strong> determina a proporção de tempo em que a máquina
+        permaneceu
+        em operação em relação ao total de horas registradas.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_medidapercentualhorastrabalhadas.png"
+          alt="Medida Percentual Horas Trabalhadas" loading="lazy" decoding="async">
+        <figcaption>Medida Percentual Horas Trabalhadas</figcaption>
+      </figure>
+
+      <p>
+        Assim como na medida de horas paradas, a função <strong>DIVIDE</strong> é utilizada para garantir robustez,
+        permitindo avaliar com precisão o nível de utilização da máquina.
+      </p>
+    </section>
+
+    <!-- Etapa da criação do Dashboard -->
+    <section class="projeto-header" id="dashboard">
+      <h2>Construção do dashboard</h2>
+    </section>
+
+    <section class="projeto">
+      <h3>Dashboard final</h3>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_dashboardfinal.png" alt="Dashboard Final" loading="lazy"
+          decoding="async">
+        <figcaption>Dashboard Final</figcaption>
+      </figure>
+
+      <h4>Visão geral</h4>
+      <p>
+        O dashboard consolidou de forma clara os principais indicadores do processo produtivo, oferecendo uma visão
+        abrangente do desempenho da célula robotizada. A partir das medidas criadas, é possível acompanhar o volume de
+        peças produzidas, a distribuição por turno e operador, além de indicadores de tempo e utilização da máquina.
+      </p>
+      <p>
+        Métricas como média de setup, horas trabalhadas e horas paradas fornecem uma leitura precisa da utilização da
+        célula, evidenciando tanto a eficiência operacional quanto os períodos de indisponibilidade. A análise
+        percentual desses tempos complementa a interpretação, permitindo avaliar o equilíbrio entre produção ativa e
+        interrupções.
+      </p>
+      <p>
+        Visualizações por dia da semana, turno e código de produção ampliam a capacidade de diagnóstico, facilitando a
+        identificação de padrões, gargalos e oportunidades de melhoria. Com isso, o dashboard se torna uma ferramenta
+        estratégica para planejamento, acompanhamento e otimização contínua do processo.
+      </p>
+      <p>
+        Em conjunto, o modelo dimensional, as medidas DAX e as visualizações resultam em um painel robusto e confiável,
+        alinhado às necessidades operacionais e preparado para suportar análises futuras.
+      </p>
+    </section>
+
+    <!-- Página dos detalhes -->
+    <section class="projeto-header" id="detalhes">
+      <h2>Detalhes da produção</h2>
+    </section>
+    <section class="projeto">
+      <h3>Detalhes da Produção (Drillthrough)</h3>
+      <p>
+        A página <strong>Detalhes da Produção</strong>, acessada por meio do recurso de <em>drillthrough</em>,
+        complementa o dashboard principal ao permitir a análise aprofundada de cada ciclo produtivo.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_DetalhesProdução.png" alt="Detalhes da Produção" loading="lazy"
+          decoding="async">
+        <figcaption>Detalhes da Produção</figcaption>
+      </figure>
+
+      <p>
+        A partir de qualquer indicador agregado, o usuário pode navegar diretamente para o registro individual
+        correspondente, visualizando informações como operador, caçamba utilizada, tempo de setup, horários de início
+        e
+        término da peça, além dos atributos de calendário associados.
+      </p>
+      <p>
+        Esse detalhamento garante rastreabilidade completa do processo, permitindo validar resultados, investigar
+        comportamentos específicos e compreender a origem de variações observadas nos indicadores consolidados. O uso
+        do
+        <em>drillthrough</em> torna a navegação mais intuitiva e reduz o tempo de análise, oferecendo uma visão
+        granular
+        essencial para auditorias e diagnósticos operacionais.
+      </p>
+    </section>
+
+    <!-- Página das tooltips -->
+    <section class="projeto-header" id="tooltips">
+      <h2>Tooltips personalizadas</h2>
+    </section>
+    <section class="projeto">
+      <h3>Tooltips personalizadas</h3>
+      <p>
+        Além das páginas principais, foram desenvolvidas <strong>tooltips personalizadas</strong> para enriquecer a
+        experiência analítica. Essas tooltips são exibidas automaticamente quando o usuário passa o cursor sobre
+        determinados elementos visuais, apresentando informações adicionais sem a necessidade de navegação para outra
+        página.
+      </p>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_Analisedepeças.png" alt="Análise de peças" loading="lazy"
+          decoding="async">
+        <figcaption>Análise de peças</figcaption>
+      </figure>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_analisedeHoras.png" alt="Análise de horas" loading="lazy"
+          decoding="async">
+        <figcaption>Análise de horas</figcaption>
+      </figure>
+
+      <figure class="imagem-projeto">
+        <img src="../projetos/img_Progetos/img_Analisedeproduçãodiaria.png" alt="Análise de produção diária"
+          loading="lazy" decoding="async">
+        <figcaption>Análise de produção diária</figcaption>
+      </figure>
+
+      <p>
+        Nas análises por modelo, por tempo e por produção diária, as tooltips exibem métricas complementares como
+        quantidade produzida, tempo médio e distribuição por período, permitindo uma interpretação mais rápida e
+        contextualizada dos dados.
+      </p>
+      <p>
+        Em síntese, as tooltips funcionam como uma camada de detalhe instantânea, oferecendo ao usuário uma visão mais
+        completa do processo produtivo de forma prática e intuitiva.
+      </p>
+    </section>
+
+    <!-- Melhorias a serem aplicadas -->
+    <section class="projeto-header" id="melhorias">
+      <h2>Oportunidades de melhoria identificadas</h2>
+    </section>
+
+    <section class="projeto-tabela">
+      <p>
+        A análise dos dados evidencia que a maior parte das horas paradas — 58 das 99 registradas, representando mais de
+        50% — está diretamente associada a motivos de manutenção. Esse comportamento reforça a necessidade de uma
+        investigação mais aprofundada sobre a natureza dessas ocorrências, sua frequência e possíveis ações preventivas
+        para reduzir o impacto no processo produtivo.
+      </p>
+      <p>
+        Outro ponto relevante é a diferença de desempenho entre os turnos. O turno da noite apresenta produtividade
+        inferior ao do dia, indicando que fatores como ritmo operacional, disponibilidade de operadores, condições de
+        trabalho ou perfil das demandas podem estar influenciando esse resultado. Compreender essas causas é essencial
+        para equilibrar a produção entre os períodos.
+      </p>
+      <p>
+        Além disso, dois aspectos adicionais se destacam como oportunidades de melhoria: a redução do tempo de setup,
+        que impacta diretamente a disponibilidade produtiva, e a otimização do tempo médio das caçambas, que pode elevar
+        a eficiência geral do processo. Atuar nesses pontos tende a gerar ganhos significativos em produtividade e
+        estabilidade operacional.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <section class="projeto-header">
+      <p>© 2026 Douglas Citon. Todos os direitos reservados.</p>
+    </section>
+  </footer>
+
+  <script src="../js/mobile_navbar.js" defer></script>
+</body>
+
+</html>

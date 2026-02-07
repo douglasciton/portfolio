@@ -1,0 +1,148 @@
+/* =====================================================
+   ESTRUTURA E HEADER ESPECÍFICO (PROJETO)
+===================================================== */
+body {
+    /* O padding-top deve ser suficiente para o header fixo */
+    padding-top: 110px; 
+}
+
+main {
+    max-width: var(--container-width);
+    margin: auto;
+    /* Usamos padding lateral menor em telas pequenas e maior em grandes */
+    padding: 0 5%; 
+}
+
+/* Linha superior: Título e Menu */
+.header-topo {
+    max-width: var(--container-width);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px; /* min-height é mais seguro que height fixo */
+    padding: 0 20px;
+    flex-wrap: wrap; /* Permite quebrar linha se o título for muito longo */
+}
+
+.titulo-projeto {
+    font-size: clamp(1.1rem, 4vw, 1.5rem); /* Fonte fluida: min, ideal, max */
+    font-weight: 600;
+    padding: 10px 0;
+}
+
+/* Linha inferior: Link Voltar */
+.header-voltar {
+    text-align: center;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.link-voltar {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.link-voltar:hover { text-decoration: underline; }
+
+/* =====================================================
+   CONTEÚDO DO PROJETO
+===================================================== */
+section {
+    padding: 40px 0; /* Espaçamento vertical entre seções */
+    max-width: var(--container-width);
+    margin: auto;
+    scroll-margin-top: 130px;
+}
+
+section h2 { 
+    font-size: clamp(1.5rem, 5vw, 2rem); 
+    color: var(--color-primary); 
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+section h3 { font-size: clamp(1.3rem, 4vw, 1.8rem); padding: 20px 0; }
+section h4 { font-size: 1.2rem; color: var(--color-primary); padding: 15px 0; }
+section p { font-size: 1rem; line-height: 1.8; margin-bottom: 20px; }
+
+/* BLOCOS DO PROJETO */
+.projeto-bloco {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: clamp(20px, 5vw, 40px); /* Padding diminui em telas pequenas */
+    margin-bottom: 40px;
+}
+
+.projeto-tabela ul {
+    list-style: none;
+    padding: 10px 0 10px 20px; /* Reduzido para não "comer" espaço no mobile */
+}
+
+.projeto-tabela ul li { 
+    line-height: 1.6; 
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.projeto-tabela ul li::before {
+    content: "-";
+    color: var(--color-primary);
+    font-weight: bold;
+    display: inline-block;
+    width: 15px;
+}
+
+/* IMAGENS */
+.imagem-projeto {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.imagem-projeto img {
+    width: 100%; /* Ocupa a largura total do bloco */
+    height: auto; /* Mantém a proporção */
+    max-width: 1000px; /* Não deixa a imagem ficar gigante em monitores 4k */
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* =====================================================
+   MEDIA QUERIES (AJUSTES FINOS)
+===================================================== */
+
+/* Tablets e Celulares Grandes */
+@media (max-width: 992px) {
+    main { padding: 0 20px; }
+}
+
+/* Celulares (Abaixo de 768px) */
+@media (max-width: 768px) {
+    body { padding-top: 130px; } /* Aumenta espaço pois o header pode expandir */
+    
+    .projeto-bloco {
+        padding: 25px 20px;
+    }
+    
+    .projeto-tabela ul {
+        padding-left: 10px;
+    }
+
+    /* Tabelas ou listas dentro do bloco não devem transbordar */
+    .projeto-bloco {
+        overflow-x: hidden; 
+    }
+}
+
+/* Celulares Pequenos (Abaixo de 480px) */
+@media (max-width: 480px) {
+    section h2 { text-align: left; } /* Alinhamento à esquerda as vezes lê melhor no mobile */
+    
+    .header-topo {
+        padding: 0 10px;
+    }
+}

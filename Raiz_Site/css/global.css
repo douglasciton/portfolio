@@ -1,0 +1,122 @@
+/* =====================================================
+   VARIÁVEIS, RESET E BASE
+===================================================== */
+:root {
+  --font-base: 'Fira Code', monospace;
+  --color-bg: #f9f9f9;
+  --color-white: #ffffff;
+  --color-text: #1a1a1a;
+  --color-primary: #2c7be5;
+  --color-secondary: #f80303;
+  --color-border: #e0e0e0;
+  --container-width: 1200px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-family: var(--font-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* =====================================================
+   ESTRUTURA DO HEADER (FIXO)
+===================================================== */
+header, .header-projeto {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--color-white);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-list a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-list a:hover { color: var(--color-primary); }
+
+/* =====================================================
+   MENU MOBILE (COMPATÍVEL COM SEU JS)
+===================================================== */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-menu div {
+  height: 3px;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Animação do ícone quando seu JS add a classe .active */
+.mobile-menu.active div:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+.mobile-menu.active div:nth-child(2) { opacity: 0; }
+.mobile-menu.active div:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+/* =====================================================
+   RODAPÉ E RESPONSIVIDADE
+===================================================== */
+/* Reset global para links */
+a {
+  text-decoration: none;
+  color: inherit; /* Faz o link herdar a cor do texto pai */
+  transition: 0.3s;
+}
+
+/* Estilo do Rodapé Profissional */
+footer {
+    background: #f4f4f4;
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    border-top: 1px solid var(--color-border);
+    width: 100%;           /* Garante que ocupe a largura total */
+    line-height: 1.6;      /* Melhora a leitura se o texto quebrar linha */
+}
+
+@media (max-width: 768px) {
+  .mobile-menu { display: flex; }
+  
+  .nav-list {
+    display: none; /* Escondido para o JS controlar */
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: var(--color-white);
+    width: 220px;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    border-left: 1px solid var(--color-border);
+  }
+
+  /* O seu JS ativa esta classe */
+  .nav-list.active { display: flex; }
+}
