@@ -1,25 +1,23 @@
 /* =====================================================
-   ESTRUTURA E HEADER ESPECÍFICO (HOME)
+   ESTRUTURA E HEADER (HOME)
 ===================================================== */
 main {
   padding-top: 80px;
 }
 
-.container {
+.container,
+nav,
+section {
   max-width: var(--container-width);
   margin: auto;
   padding: 0 20px;
 }
 
-/* O cabeçalho da Home é uma linha simples */
 nav {
-  max-width: var(--container-width);
-  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  padding: 0 20px;
 }
 
 .logo {
@@ -33,24 +31,24 @@ nav {
    SEÇÕES E CONTEÚDO
 ===================================================== */
 section {
-  max-width: var(--container-width);
-  margin: auto;
-  padding: 40px 20px 40px;
+  padding: 40px 20px;
   scroll-margin-top: 80px;
+}
+
+section h2,
+.sobre-content h2 {
+  color: var(--color-primary);
+  margin-bottom: 40px;
 }
 
 section h2 {
   font-size: 2rem;
   margin-bottom: 50px;
-  color: var(--color-primary);
 }
 
-/* SOBRE */
 .sobre-content h2 {
   font-size: 2.5rem;
-  color: var(--color-primary);
   text-align: center;
-  margin-bottom: 40px;
 }
 
 .sobre-content h3 {
@@ -74,7 +72,9 @@ section h2 {
   color: var(--color-primary);
 }
 
-/* HARD SKILLS */
+/* =====================================================
+   HARD SKILLS
+===================================================== */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -101,7 +101,9 @@ section h2 {
   animation: fillSkill 1.2s ease forwards;
 }
 
-/* PROJETO EM DESTAQUE */
+/* =====================================================
+   PROJETO EM DESTAQUE
+===================================================== */
 .projeto-destaque {
   background: var(--color-white);
   border: 1px solid var(--color-border);
@@ -109,7 +111,6 @@ section h2 {
   padding: 40px;
 }
 
-/* Estilo do link "Ver projeto completo" */
 .ver-mais {
   display: inline-block;
   margin-bottom: 20px;
@@ -124,7 +125,6 @@ section h2 {
   opacity: 0.8;
 }
 
-/* Estilo das Tags de Tecnologias (Power BI, DAX, etc) */
 .projeto-tecnologias {
   list-style: none;
   display: flex;
@@ -132,7 +132,6 @@ section h2 {
   gap: 10px;
   margin-bottom: 30px;
   padding: 0;
-  /* Garante que não haja recuo lateral */
 }
 
 .projeto-tecnologias li {
@@ -144,6 +143,9 @@ section h2 {
   font-weight: 500;
 }
 
+/* =====================================================
+   POWER BI EMBED
+===================================================== */
 .powerbi-embed {
   position: relative;
   width: 100%;
@@ -161,12 +163,20 @@ section h2 {
   border: none;
 }
 
-/* Seção de Certificados - Minimalista */
+/* =====================================================
+   CARROSSEL DE CERTIFICADOS
+===================================================== */
 .carousel-container {
   position: relative;
-  max-width: 800px; /* Mantém um tamanho elegante */
+  max-width: 600px;
   margin: 0 auto;
+  overflow: visible;
+}
+
+.carousel-track-container {
+  width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .carousel-track {
@@ -174,88 +184,105 @@ section h2 {
   transition: transform 0.5s ease-in-out;
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .certificado-card {
-  min-width: 100%;
+  width: 100%;
   flex-shrink: 0;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .certificado-card img {
   width: 100%;
-  max-height: 500px;
+  height: auto;
   object-fit: contain;
-  border-radius: var(--radius-sm);
 }
 
-/* Botões simples sobrepostos para não precisar de margens negativas */
+/* Botões */
 .carousel-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(44, 123, 229, 0.7); /* Azul primário com transparência */
+  background: rgba(44, 123, 229, 0.85);
   color: white;
   border: none;
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: background 0.3s, transform 0.2s;
+  outline: none;
 }
 
-.carousel-button.prev { left: 10px; }
-.carousel-button.next { right: 10px; }
+.carousel-button.prev { left: -45px; }
+.carousel-button.next { right: -45px; }
 
-/* CONTATO */
-/* Container que envolve todos os contatos */
+.carousel-button:hover {
+  background: rgba(44, 123, 229, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .carousel-button.prev { left: -10px; }
+  .carousel-button.next { right: -10px; }
+}
+
+/* =====================================================
+   CONTATO
+===================================================== */
 .contatos-grid {
-    display: flex;
-    justify-content: center; /* Centraliza os blocos */
-    align-items: center;
-    flex-wrap: wrap;       /* ESSENCIAL: Faz os itens pularem linha se não couberem */
-    gap: 30px;             /* Espaço entre um contato e outro */
-    margin-top: 40px;
-    padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 40px;
+  padding: 20px;
 }
 
-/* Cada item individual (ícone + link) */
 .contato-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;             /* Espaço entre o ícone e o texto */
-    transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.3s ease;
 }
 
 .contato-item:hover {
-    transform: translateY(-3px); /* Leve efeito ao passar o mouse */
+  transform: translateY(-3px);
 }
 
-/* Estilo do ícone */
-.contato-item i, .contato-item svg {
-    color: var(--color-primary);
-    font-size: 1.2rem;
-    flex-shrink: 0;        /* Impede o ícone de amassar */
+.contato-item i,
+.contato-item svg {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
-/* Estilo do link (removendo o azul feio das imagens) */
 .contato-item a {
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 500;
-    white-space: nowrap;   /* Impede que o e-mail ou telefone quebre no meio */
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .contato-item a:hover {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
+/* =====================================================
+   ANIMAÇÕES
+===================================================== */
 @keyframes fillSkill {
-  from {
-    width: 0;
-  }
-
-  to {
-    width: var(--skill-width);
-  }
+  from { width: 0; }
+  to { width: var(--skill-width); }
 }
